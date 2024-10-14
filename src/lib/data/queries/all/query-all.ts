@@ -1,5 +1,5 @@
-import { AllType, PagesQuery, PostsQuery } from '../../index';
 import { fetchQuery } from '../../fetch';
+import { AllType, PagesQuery, PostsQuery } from '../../index';
 
 type GetAllQueryData = AllType;
 export const queryAll = async (): Promise<GetAllQueryData> => {
