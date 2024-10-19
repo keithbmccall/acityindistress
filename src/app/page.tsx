@@ -1,4 +1,3 @@
-import { Button } from '../lib/button';
 import { PokeSearch } from '../lib/poke-search';
 import styles from './page.module.css';
 
@@ -8,10 +7,6 @@ export default function Home() {
     <main className={styles.main}>
       <div>
         <PokeSearch />
-      </div>
-
-      <div className={styles.grid}>
-        <Button>Check Please</Button>
       </div>
     </main>
   );

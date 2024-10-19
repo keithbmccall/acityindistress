@@ -1,7 +1,6 @@
 'use client';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Button } from '../../lib/button';
 import styles from '../page.module.css';
 
 export default function Poke() {
@@ -40,10 +39,6 @@ export default function Poke() {
           height={37}
           priority
         />
-      </div>
-
-      <div className={styles.grid}>
-        <Button>Check Please</Button>
       </div>
     </main>
   );

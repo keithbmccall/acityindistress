@@ -6,3 +6,8 @@ export interface DC<P = {}> {
     any
   > | null;
 }
+
+export type Pokemon = () => {
+  url: string;
+  name: string;
+};
