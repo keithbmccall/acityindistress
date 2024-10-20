@@ -7,7 +7,12 @@ export interface DC<P = {}> {
   > | null;
 }
 
-export type Pokemon = () => {
-  url: string;
+export type Pokemon = {
   name: string;
+  url: string;
+};
+
+export type SinglePokemon = {
+  name: string;
+  sprites: Record<string, string>;
 };

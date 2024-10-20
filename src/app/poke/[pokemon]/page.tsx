@@ -1,22 +1,22 @@
+import { SinglePokemon } from '@global-types';
 import Image from 'next/image';
 import { queryPokemon } from '../../../lib/actions';
 import styles from '../../page.module.css';
 
-export default async function Pokemon({
-  params,
-}: {
+interface PokemonProps {
   params: { pokemon: string };
-}) {
-  console.log({ params });
-  const pokemon = await queryPokemon(
+}
+
+export default async function Pokemon({ params }: PokemonProps) {
+  const pokemon = (await queryPokemon(
     `https://pokeapi.co/api/v2/pokemon/${params.pokemon}`,
-  );
-
-  console.log(
-    'this page will be server side',
-
-    pokemon.sprites.front_default,
-  );
+  )) as SinglePokemon;
+  const sprites = Object.keys(pokemon.sprites).sort().reverse();
+  const spriteControl = (sprite: string) =>
+    sprite === 'back_default' ||
+    sprite === 'front_default' ||
+    sprite === 'front_shiny' ||
+    sprite === 'back_shiny';
   return (
     <main className={styles.main}>
       {pokemon && (
@@ -25,17 +25,13 @@ export default async function Pokemon({
             <p>{pokemon.name}</p>
           </div>
           <div className="flex-row">
-            {Object.keys(pokemon.sprites)
-            .map(sprite =>
-              sprite === 'back_default' ||
-              sprite === 'front_default' ||
-              sprite === 'front_shiny' ||
-              sprite === 'back_shiny' ? (
+            {sprites.map(sprite =>
+              spriteControl(sprite) ? (
                 <Image
-                  src={pokemon.sprites[sprite]}
                   alt={pokemon.name}
-                  width={180}
                   height={180}
+                  src={pokemon.sprites[sprite]}
+                  width={180}
                 />
               ) : null,
             )}

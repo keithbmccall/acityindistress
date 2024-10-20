@@ -1,6 +1,7 @@
 'use client';
 
 import { Pokemon } from '@global-types';
+import { debounce } from '@utils';
 import Link from 'next/link';
 import { useState } from 'react';
 import { queryPokemon } from './actions';
@@ -32,7 +33,7 @@ export const PokeSearch = () => {
 
   return (
     <div>
-      <Input suggestiveSearch={searchPokemon}></Input>
+      <Input suggestiveSearch={debounce(searchPokemon, 300)}></Input>
       {suggestiveSearchResults.length > 0 && (
         <div className="bg-white">
           {suggestiveSearchResults.map(result => (

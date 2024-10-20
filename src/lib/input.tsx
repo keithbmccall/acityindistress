@@ -1,8 +1,12 @@
 'use client';
 
+import { DC } from '@global-types';
 import { ChangeEvent, useState } from 'react';
 
-export const Input = ({ suggestiveSearch }) => {
+interface InputProps {
+  suggestiveSearch: (value: string) => void;
+}
+export const Input: DC<InputProps> = ({ suggestiveSearch }) => {
   const [input, setInput] = useState('');
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
